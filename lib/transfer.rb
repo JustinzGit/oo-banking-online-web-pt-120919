@@ -1,5 +1,5 @@
 class Transfer
-  attr_reader :sender, :receiver, :status, :money
+  attr_reader :sender, :receiver, :status, :amount
   
   def initialize(bank1, bank2, money)
     @sender = bank1
@@ -10,6 +10,11 @@ class Transfer
   
   def valid?
     @sender.valid? && @receiver.valid?
+  end
+  
+  def execute_transaction
+    @sender.balance -= @amount
+    @receiver.balance += @amount
   end 
   
 end
